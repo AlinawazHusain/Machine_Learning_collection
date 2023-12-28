@@ -39,6 +39,7 @@ train_loader = DataLoader(train_data , batch_size = b_size , shuffle = True)
 test_loader = DataLoader(test_data , batch_size = b_size , shuffle = True)
 
 
+model.train()
 for epoch in range(epochs):
     pbar = tqdm(train_loader , desc = f'epoch {epoch}/{epochs}')
 
@@ -72,9 +73,10 @@ for epoch in range(epochs):
                 total = outputs.shape[0]
                 accurate = (outputs == label).sum()
 
-                accuracy = accurate/total
+                accuracy = (accurate/total)*100
 
             print(f'Accuracy : {accuracy}')
+            model.train()
 
 
 
