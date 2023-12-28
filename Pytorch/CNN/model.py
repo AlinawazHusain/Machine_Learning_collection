@@ -13,11 +13,17 @@ class CNN(nn.Module):
 
         self.layers = nn.Sequential(
             nn.Conv2d(in_ch , features*8 , 3 , 2 , 1),
+            nn.ReLU(),
             nn.Conv2d(features*8 , features*4 , 3 , 2 , 1),  
+            nn.ReLU(),
             nn.Conv2d(features*4 , features*2 , 3 , 2 ,1),  
+            nn.ReLU() ,
             nn.Conv2d(features*2 , features , 3 , 2 ,1),  
+            nn.ReLU(),
             nn.Conv2d(features , features//2 , 3 , 2 ,1),  
+            nn.ReLU(),
             nn.Conv2d(features//2 , num_classes , 3 , 2 ,1),  
+            nn.Softmax()
         )
 
 
