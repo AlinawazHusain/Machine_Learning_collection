@@ -6,6 +6,8 @@ import torchvision.models as models
 from PIL import Image
 from torchvision.utils import save_image
 from tqdm import trange
+import warnings
+warnings.filterwarnings('ignore')
 
 
 
@@ -47,8 +49,8 @@ Transform = transform.Compose(
 )
 
 
-img = load_image('Model/data/annahathaway.png')
-style = load_image('Model/data/style.jpg')
+img = load_image('Pytorch/NeuralStyleTransfer/data/annahathaway.png')
+style = load_image('Pytorch/NeuralStyleTransfer/data/style.jpg')
 
 generated = img.clone().requires_grad_(True)
 
@@ -90,10 +92,11 @@ for step in trange(total_steps):
         style_loss += torch.mean((G - A) ** 2)
 
     total_loss = alpha * original_loss + beta * style_loss
+    print(total_loss)
     optimizer.zero_grad()
     total_loss.backward()
     optimizer.step()
 
-    if step % 1000 == 0:
+    if step % 50 == 0:
         print(total_loss)
         save_image(generated, "generated.png")
