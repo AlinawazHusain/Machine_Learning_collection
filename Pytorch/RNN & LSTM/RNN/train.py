@@ -15,7 +15,7 @@ num_classes = 10 #MNIST
 EPOCH = 1
 
 
-Model = model.RNN(input_size , hidden_size , num_layers , num_classes)
+Model = model.RNN(input_size , hidden_size , num_layers , seq_len ,num_classes)
 loss_fn = nn.CrossEntropyLoss()
 optimizer = optim.Adam(Model.parameters() , lr = 0.001)
 
